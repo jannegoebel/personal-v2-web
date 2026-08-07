@@ -1,0 +1,10 @@
+.fadeIn {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+@starting-style {
+  .fadeIn {
+    opacity: 0;
+  }
+}

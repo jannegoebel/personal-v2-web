@@ -1,0 +1,12 @@
+{
+  "title": "Projekte",
+  "details": {
+    "states": {
+      "committed": "In Arbeit",
+      "deprecated": "Veraltet",
+      "live": "Live",
+      "minimum-viable-product": "MVP",
+      "planning": "In Planung"
+    }
+  }
+}

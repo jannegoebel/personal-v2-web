@@ -1,0 +1,8 @@
+{
+  "dark": "Dunkel",
+  "dateFormat": "dd.MM.yyyy",
+  "english": "Englisch",
+  "fromDate": "Von {{date}}",
+  "german": "Deutsch",
+  "light": "Hell"
+}

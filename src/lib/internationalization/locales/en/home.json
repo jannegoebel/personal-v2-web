@@ -1,0 +1,11 @@
+{
+  "content": {
+    "age": "{{age}} years",
+    "blackForest": "Black forest, germany",
+    "softwareDeveloper": "Software developer"
+  },
+  "songOfTheDay": {
+    "title": "Song of the Day"
+  },
+  "title": "Home"
+}

@@ -1,0 +1,8 @@
+{
+  "dark": "Dark",
+  "dateFormat": "yyyy/MM/dd",
+  "english": "English",
+  "fromDate": "From {{date}}",
+  "german": "German",
+  "light": "Light"
+}

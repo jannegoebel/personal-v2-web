@@ -1,0 +1,3 @@
+.map > :global(.maplibregl-map) > :global(.maplibregl-control-container) {
+  display: none !important;
+}

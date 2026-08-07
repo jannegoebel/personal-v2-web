@@ -1,0 +1,11 @@
+{
+  "content": {
+    "age": "{{age}} Jahre",
+    "blackForest": "Schwarzwald, Deutschland",
+    "softwareDeveloper": "Softwareentwickler"
+  },
+  "songOfTheDay": {
+    "title": "Song des Tages"
+  },
+  "title": "Home"
+}

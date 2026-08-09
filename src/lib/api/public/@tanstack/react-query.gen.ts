@@ -3,8 +3,8 @@
 import { type DefaultError, queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 
 import { client } from '../client.gen';
-import { getLandmarkDetails, getLandmarksOverview, getLatestSongOfTheDay, getProjectDetails, getProjectsOverview, getQuizQuestionDetails, getQuizQuestionsOverview, getSongOfTheDayOverview, getTimelineOverview, type Options, publicHealthCheck, signUpUser } from '../sdk.gen';
-import type { GetLandmarkDetailsData, GetLandmarkDetailsError, GetLandmarkDetailsResponse, GetLandmarksOverviewData, GetLandmarksOverviewResponse, GetLatestSongOfTheDayData, GetLatestSongOfTheDayResponse, GetProjectDetailsData, GetProjectDetailsError, GetProjectDetailsResponse, GetProjectsOverviewData, GetProjectsOverviewResponse, GetQuizQuestionDetailsData, GetQuizQuestionDetailsError, GetQuizQuestionDetailsResponse, GetQuizQuestionsOverviewData, GetQuizQuestionsOverviewResponse, GetSongOfTheDayOverviewData, GetSongOfTheDayOverviewResponse, GetTimelineOverviewData, GetTimelineOverviewResponse, PublicHealthCheckData, PublicHealthCheckResponse, SignUpUserData, SignUpUserError, SignUpUserResponse } from '../types.gen';
+import { getLandmarkDetails, getLandmarksOverview, getLatestSongOfTheDay, getProjectDetails, getProjectsOverview, getQuizQuestionDetails, getQuizQuestionsOverview, getSongOfTheDayOverview, getTimelineOverview, getUserProfileImages, type Options, publicHealthCheck, signUpUser } from '../sdk.gen';
+import type { GetLandmarkDetailsData, GetLandmarkDetailsError, GetLandmarkDetailsResponse, GetLandmarksOverviewData, GetLandmarksOverviewResponse, GetLatestSongOfTheDayData, GetLatestSongOfTheDayResponse, GetProjectDetailsData, GetProjectDetailsError, GetProjectDetailsResponse, GetProjectsOverviewData, GetProjectsOverviewResponse, GetQuizQuestionDetailsData, GetQuizQuestionDetailsError, GetQuizQuestionDetailsResponse, GetQuizQuestionsOverviewData, GetQuizQuestionsOverviewResponse, GetSongOfTheDayOverviewData, GetSongOfTheDayOverviewResponse, GetTimelineOverviewData, GetTimelineOverviewResponse, GetUserProfileImagesData, GetUserProfileImagesError, GetUserProfileImagesResponse, PublicHealthCheckData, PublicHealthCheckResponse, SignUpUserData, SignUpUserError, SignUpUserResponse } from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseUrl' | 'body' | 'headers' | 'path' | 'query'> & {
@@ -52,6 +52,21 @@ export const publicHealthCheckOptions = (options?: Options<PublicHealthCheckData
         return data;
     },
     queryKey: publicHealthCheckQueryKey(options)
+});
+
+export const getUserProfileImagesQueryKey = (options?: Options<GetUserProfileImagesData>) => createQueryKey('getUserProfileImages', options);
+
+export const getUserProfileImagesOptions = (options?: Options<GetUserProfileImagesData>) => queryOptions<GetUserProfileImagesResponse, GetUserProfileImagesError, GetUserProfileImagesResponse, ReturnType<typeof getUserProfileImagesQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getUserProfileImages({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getUserProfileImagesQueryKey(options)
 });
 
 export const signUpUserMutation = (options?: Partial<Options<SignUpUserData>>): UseMutationOptions<SignUpUserResponse, SignUpUserError, Options<SignUpUserData>> => {

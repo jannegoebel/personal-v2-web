@@ -11,6 +11,15 @@ export const zPublicHealthCheckResponse = z.object({
     payload: z.literal(true)
 });
 
+/**
+ * Default Response
+ */
+export const zGetUserProfileImagesResponse = z.object({
+    ok: z.literal(true),
+    message: z.string(),
+    payload: z.array(z.string())
+});
+
 export const zSignUpUserBody = z.object({
     email: z.email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
     firstname: z.string().min(1),

@@ -2,7 +2,7 @@
 
 import type { Client, ClientMeta, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
-import type { GetLandmarkDetailsData, GetLandmarkDetailsErrors, GetLandmarkDetailsResponses, GetLandmarksOverviewData, GetLandmarksOverviewResponses, GetLatestSongOfTheDayData, GetLatestSongOfTheDayResponses, GetProjectDetailsData, GetProjectDetailsErrors, GetProjectDetailsResponses, GetProjectsOverviewData, GetProjectsOverviewResponses, GetQuizQuestionDetailsData, GetQuizQuestionDetailsErrors, GetQuizQuestionDetailsResponses, GetQuizQuestionsOverviewData, GetQuizQuestionsOverviewResponses, GetSongOfTheDayOverviewData, GetSongOfTheDayOverviewResponses, GetTimelineOverviewData, GetTimelineOverviewResponses, PublicHealthCheckData, PublicHealthCheckResponses, SignUpUserData, SignUpUserErrors, SignUpUserResponses } from './types.gen';
+import type { GetLandmarkDetailsData, GetLandmarkDetailsErrors, GetLandmarkDetailsResponses, GetLandmarksOverviewData, GetLandmarksOverviewResponses, GetLatestSongOfTheDayData, GetLatestSongOfTheDayResponses, GetProjectDetailsData, GetProjectDetailsErrors, GetProjectDetailsResponses, GetProjectsOverviewData, GetProjectsOverviewResponses, GetQuizQuestionDetailsData, GetQuizQuestionDetailsErrors, GetQuizQuestionDetailsResponses, GetQuizQuestionsOverviewData, GetQuizQuestionsOverviewResponses, GetSongOfTheDayOverviewData, GetSongOfTheDayOverviewResponses, GetTimelineOverviewData, GetTimelineOverviewResponses, GetUserProfileImagesData, GetUserProfileImagesErrors, GetUserProfileImagesResponses, PublicHealthCheckData, PublicHealthCheckResponses, SignUpUserData, SignUpUserErrors, SignUpUserResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -19,6 +19,8 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 };
 
 export const publicHealthCheck = <ThrowOnError extends boolean = false>(options?: Options<PublicHealthCheckData, ThrowOnError>): RequestResult<PublicHealthCheckResponses, unknown, ThrowOnError> => (options?.client ?? client).get<PublicHealthCheckResponses, unknown, ThrowOnError>({ url: '/api/public/health', ...options });
+
+export const getUserProfileImages = <ThrowOnError extends boolean = false>(options?: Options<GetUserProfileImagesData, ThrowOnError>): RequestResult<GetUserProfileImagesResponses, GetUserProfileImagesErrors, ThrowOnError> => (options?.client ?? client).get<GetUserProfileImagesResponses, GetUserProfileImagesErrors, ThrowOnError>({ url: '/api/public/user/profile-images', ...options });
 
 export const signUpUser = <ThrowOnError extends boolean = false>(options: Options<SignUpUserData, ThrowOnError>): RequestResult<SignUpUserResponses, SignUpUserErrors, ThrowOnError> => (options.client ?? client).post<SignUpUserResponses, SignUpUserErrors, ThrowOnError>({
     url: '/api/public/user/sign-up',

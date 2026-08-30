@@ -21,7 +21,7 @@ export default function JanneGramDesktop({ landmarks }: Props) {
           />
         )}
       </div>
-      <div className="h-[300%] overflow-hidden">
+      <div className="h-[250%] overflow-hidden">
         <Suspense>
           <Canvas landmarks={landmarks} onSelectMarker={setSelectedLandmark} />
         </Suspense>

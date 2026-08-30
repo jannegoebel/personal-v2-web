@@ -70,9 +70,8 @@ export default function Marker({
       <meshPhysicalMaterial
         color="#ffd6a7"
         emissive={selected ? "#f54900" : hover ? "#ca3500" : "#ff6900"}
-        //roughness={0.5}
+        roughness={1}
         metalness={1}
-        reflectivity={0.75}
         clearcoat={1}
       />
     </mesh>

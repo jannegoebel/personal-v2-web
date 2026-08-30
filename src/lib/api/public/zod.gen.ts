@@ -63,10 +63,10 @@ export const zGetTimelineOverviewResponse = z.object({
         title: z.object({
             german: z.string(),
             english: z.string()
-        }).optional(),
-        tags: z.array(z.string()).optional(),
+        }).nullish(),
+        tags: z.array(z.string()).nullish(),
         startAt: z.iso.datetime().regex(/^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$/),
-        endAt: z.iso.datetime().regex(/^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$/).optional()
+        endAt: z.iso.datetime().regex(/^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$/).nullish()
     }))
 });
 
@@ -85,7 +85,7 @@ export const zGetProjectsOverviewResponse = z.object({
             'minimum-viable-product',
             'live'
         ]),
-        link: z.url().optional(),
+        link: z.url().nullish(),
         logo: z.string().optional(),
         titleImage: z.string().optional(),
         slug: z.string(),
@@ -120,7 +120,7 @@ export const zGetProjectDetailsResponse = z.object({
             'minimum-viable-product',
             'live'
         ]),
-        link: z.url().optional(),
+        link: z.url().nullish(),
         logo: z.string().optional(),
         titleImage: z.string().optional(),
         slug: z.string(),
@@ -281,14 +281,14 @@ export const zGetLandmarksOverviewResponse = z.object({
     message: z.string(),
     payload: z.array(z.object({
         id: z.string(),
-        date: z.iso.datetime().regex(/^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$/).optional(),
+        date: z.iso.datetime().regex(/^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$/).nullish(),
         location: z.object({
             latitude: z.number(),
             longitude: z.number()
         }),
-        locationName: z.string().optional(),
+        locationName: z.string().nullish(),
         images: z.array(z.string()),
-        tags: z.array(z.string()).optional()
+        tags: z.array(z.string()).nullish()
     }))
 });
 
@@ -304,13 +304,13 @@ export const zGetLandmarkDetailsResponse = z.object({
     message: z.string(),
     payload: z.object({
         id: z.string(),
-        date: z.iso.datetime().regex(/^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$/).optional(),
+        date: z.iso.datetime().regex(/^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$/).nullish(),
         location: z.object({
             latitude: z.number(),
             longitude: z.number()
         }),
-        locationName: z.string().optional(),
+        locationName: z.string().nullish(),
         images: z.array(z.string()),
-        tags: z.array(z.string()).optional()
+        tags: z.array(z.string()).nullish()
     })
 });

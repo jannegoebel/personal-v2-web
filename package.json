@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "generate:api": "openapi-ts",
+    "check:types": "tsc --noEmit -p tsconfig.json",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
@@ -34,7 +36,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
-    "@hey-api/openapi-ts": "^0.99.0",
+    "@hey-api/openapi-ts": "^0.97.0",
     "@hey-api/vite-plugin": "^0.3.2",
     "@rolldown/plugin-babel": "^0.2.3",
     "@tanstack/router-plugin": "^1.168.20",

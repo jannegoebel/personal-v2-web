@@ -1,17 +1,25 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas as ThreeCanvas } from "@react-three/fiber";
-import { useState } from "react";
-import EarthGroup from "./_earth-group";
 import type { Landmark, Landmarks } from "../jannegram";
+import EarthGroup from "./_earth-group";
+import { getCenterCameraPosition } from "./_utils";
+import { useState } from "react";
 
 type Props = {
   landmarks: Landmarks;
   onSelectMarker: (landmark: Landmark) => void;
 };
+type SceneProps = Props & {
+  hoverMarker: string | null;
+  onHoverMarker: (id: string | null) => void;
+};
 
-function Scene({ landmarks, onSelectMarker }: Props) {
-  const [stopAutoRotation, setStopAutoRotation] = useState(false);
-
+function Scene({
+  landmarks,
+  hoverMarker,
+  onHoverMarker,
+  onSelectMarker,
+}: SceneProps) {
   return (
     <>
       <ambientLight intensity={0.5} />
@@ -19,9 +27,8 @@ function Scene({ landmarks, onSelectMarker }: Props) {
 
       <EarthGroup
         landmarks={landmarks}
-        stopAutoRotation={stopAutoRotation}
-        onStopAutoRotation={() => setStopAutoRotation(true)}
-        onStartAutoRotation={() => setStopAutoRotation(true)}
+        markerHover={hoverMarker}
+        onMarkerHover={onHoverMarker}
         onMarkerClick={(landmark) => onSelectMarker(landmark)}
       />
 
@@ -29,16 +36,32 @@ function Scene({ landmarks, onSelectMarker }: Props) {
         minDistance={Math.sqrt(3)}
         maxDistance={Math.sqrt(3)}
         enablePan={false}
-        onStart={() => setStopAutoRotation(true)}
       />
     </>
   );
 }
 
 export default function Canvas({ landmarks, onSelectMarker }: Props) {
+  const position = getCenterCameraPosition(landmarks);
+
+  const [grabbing, setGrabbing] = useState(false);
+  const [hover, setHover] = useState<string | null>(null);
+
   return (
-    <ThreeCanvas camera={{ position: [1, 1, 1] }}>
-      <Scene landmarks={landmarks} onSelectMarker={onSelectMarker} />
-    </ThreeCanvas>
+    <span
+      className={`${hover != null ? "cursor-pointer" : grabbing ? "cursor-grabbing" : "cursor-grab"}`}
+      onPointerDown={() => setGrabbing(true)}
+      onPointerUp={() => setGrabbing(false)}
+      onPointerLeave={() => setGrabbing(false)}
+    >
+      <ThreeCanvas camera={{ position }}>
+        <Scene
+          landmarks={landmarks}
+          hoverMarker={hover}
+          onHoverMarker={(id) => setHover(id)}
+          onSelectMarker={onSelectMarker}
+        />
+      </ThreeCanvas>
+    </span>
   );
 }

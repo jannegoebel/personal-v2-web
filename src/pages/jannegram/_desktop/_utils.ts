@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import type { Landmarks } from "../jannegram";
 
 export function latLonToVector3(lat: number, lon: number, radius = 1) {
   const phi = (90 - lat) * (Math.PI / 180);
@@ -11,7 +12,22 @@ export function latLonToVector3(lat: number, lon: number, radius = 1) {
   );
 }
 
-export function getGlobeRotationToPoint(point: THREE.Vector3, to: THREE.Vector3) {
-  const from = point.clone().normalize();
-  return new THREE.Quaternion().setFromUnitVectors(from, to.clone().normalize());
+export function getCenterCameraPosition(
+  landmarks: Landmarks,
+  yOffset = 0.4,
+): THREE.Vector3 {
+  const length = landmarks.length;
+
+  const latitude =
+    landmarks.reduce((acc, mark) => acc + mark.location.latitude, 0) / length;
+  const longitude =
+    landmarks.reduce((acc, mark) => acc + mark.location.longitude, 0) / length;
+
+  const centerPoint = latLonToVector3(latitude, longitude);
+
+  return new THREE.Vector3(
+    centerPoint.x,
+    centerPoint.y - yOffset,
+    centerPoint.z,
+  );
 }

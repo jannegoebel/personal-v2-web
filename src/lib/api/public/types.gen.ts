@@ -134,10 +134,10 @@ export type GetTimelineOverviewResponses = {
             title?: {
                 german: string;
                 english: string;
-            };
-            tags?: Array<string>;
+            } | null;
+            tags?: Array<string> | null;
             startAt: string;
-            endAt?: string;
+            endAt?: string | null;
         }>;
     };
 };
@@ -161,7 +161,7 @@ export type GetProjectsOverviewResponses = {
         payload: Array<{
             id: string;
             state: 'deprecated' | 'planning' | 'committed' | 'minimum-viable-product' | 'live';
-            link?: string;
+            link?: string | null;
             logo?: string;
             titleImage?: string;
             slug: string;
@@ -212,7 +212,7 @@ export type GetProjectDetailsResponses = {
         payload: {
             id: string;
             state: 'deprecated' | 'planning' | 'committed' | 'minimum-viable-product' | 'live';
-            link?: string;
+            link?: string | null;
             logo?: string;
             titleImage?: string;
             slug: string;
@@ -436,14 +436,14 @@ export type GetLandmarksOverviewResponses = {
         message: string;
         payload: Array<{
             id: string;
-            date?: string;
+            date?: string | null;
             location: {
                 latitude: number;
                 longitude: number;
             };
-            locationName?: string;
+            locationName?: string | null;
             images: Array<string>;
-            tags?: Array<string>;
+            tags?: Array<string> | null;
         }>;
     };
 };
@@ -481,14 +481,14 @@ export type GetLandmarkDetailsResponses = {
         message: string;
         payload: {
             id: string;
-            date?: string;
+            date?: string | null;
             location: {
                 latitude: number;
                 longitude: number;
             };
-            locationName?: string;
+            locationName?: string | null;
             images: Array<string>;
-            tags?: Array<string>;
+            tags?: Array<string> | null;
         };
     };
 };

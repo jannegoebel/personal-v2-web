@@ -29,21 +29,31 @@ export default function Contact({ profileImages }: Props) {
             url={getRandomProfileImage(profileImages)}
           />
         )}
-        <a href="mailto:info@jannegoebel.de" target="_blank">
+        <a
+          href="mailto:info@jannegoebel.de"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <MailIcon className="w-14 h-14 md:w-20 md:h-20 fill-black dark:fill-white hover:fill-orange-500 dark:hover:fill-orange-500" />
         </a>
         <a
           href="https://www.linkedin.com/in/janne-göbel-004b06238/"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <LinkedInIcon className="w-14 h-14 md:w-20 md:h-20 fill-black dark:fill-white hover:fill-orange-500 dark:hover:fill-orange-500" />
         </a>
-        <a href="https://github.com/jannegoebel" target="_blank">
+        <a
+          href="https://github.com/jannegoebel"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <GithubIcon className="w-14 h-14 md:w-20 md:h-20 fill-black dark:fill-white hover:fill-orange-500 dark:hover:fill-orange-500" />
         </a>
         <a
           href="https://open.spotify.com/user/315weusvj4sue4c422js5u3gfi4u?si=84454923c0de4248"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <SpotifyIcon className="w-14 h-14 md:w-20 md:h-20 fill-black dark:fill-white hover:fill-orange-500 dark:hover:fill-orange-500" />
         </a>

@@ -7,6 +7,7 @@ import { getLatestSongOfTheDayOptions } from "../lib/api/public/@tanstack/react-
 import Image from "../lib/components/image/image";
 import CenteredPage from "../lib/components/pages/centered-page/centered-page";
 import SpotifyIcon from "../lib/components/icons/spotify";
+import { safeExternalHref } from "../lib/utilization/external-link";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -16,6 +17,7 @@ export default function Home() {
     <CenteredPage className="relative">
       {matchQuery(songOfTheDayQuery, {
         success: (song) => {
+          const spotifyHref = safeExternalHref(song.spotifyUrl);
           const content = (
             <>
               <p className="col-span-full w-full text-lg text-neutral-800 font-bold text-center dark:text-neutral-100">
@@ -44,11 +46,12 @@ export default function Home() {
             </>
           );
 
-          return song.spotifyUrl ? (
+          return spotifyHref ? (
             <a
               className="group cursor-pointer absolute bottom-2 left-2 right-2 h-fit grid grid-rows-[auto_auto] grid-cols-[auto_1fr] gap-1 p-2 lg:top-0 lg:left-8 lg:max-w-52 lg:flex lg:flex-col lg:items-center lg:p-4 bg-orange-500"
-              href={song.spotifyUrl}
+              href={spotifyHref}
               target="_blank"
+              rel="noopener noreferrer"
             >
               {content}
             </a>

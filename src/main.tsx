@@ -8,7 +8,7 @@ import { client as publicClient } from "./lib/api/public/client.gen";
 import "./lib/internationalization/i18n";
 
 publicClient.setConfig({
-  baseUrl: import.meta.env.VITE_BACKEND_URL,
+  baseUrl: (import.meta.env.VITE_BACKEND_URL ?? "").replace(/\/+$/, ""),
   headers: {
     "x-api-key": import.meta.env.VITE_BACKEND_KEY,
   },

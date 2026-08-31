@@ -4,6 +4,7 @@ import Image from "../../lib/components/image/image";
 import { useLanguage } from "../../lib/hooks/use-language";
 import type { ResumeEntryType } from "./resume";
 import style from "./_resume-entry.module.css";
+import { safeExternalHref } from "../../lib/utilization/external-link";
 
 type Props = {
   entry: ResumeEntryType;
@@ -18,13 +19,18 @@ export default function ResumeEntryMobile({ entry }: Props) {
     <Image className="w-28 h-28" url={entry.organizationLogo} noSkeleton />
   );
   const organization = `@${entry.organization}`;
+  const organizationHref = safeExternalHref(entry.organizationLink);
 
   return (
     <div className={`grid place-items-center ${style.fadeIn}`}>
       <div className="flex flex-col sm:flex-row gap-2 items-center">
         {entry.organizationLogo &&
-          (entry.organizationLink ? (
-            <a href={entry.organizationLink} target="_blank">
+          (organizationHref ? (
+            <a
+              href={organizationHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {image}
             </a>
           ) : (
@@ -43,11 +49,12 @@ export default function ResumeEntryMobile({ entry }: Props) {
               {entry.title[resolvedLanguage]}
             </h1>
           )}
-          {entry.organizationLink ? (
+          {organizationHref ? (
             <a
               className="text-xl font-bold line-clamp-2"
-              href={entry.organizationLink}
+              href={organizationHref}
               target="_blank"
+              rel="noopener noreferrer"
             >
               {organization}
             </a>

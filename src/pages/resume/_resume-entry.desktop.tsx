@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../lib/hooks/use-language";
 import style from "./_resume-entry.module.css";
+import { safeExternalHref } from "../../lib/utilization/external-link";
 
 type Props = {
   align: "top" | "bottom";
@@ -19,6 +20,7 @@ export default function ResumeEntryDesktop({ align, entry }: Props) {
     <Image className="w-52 h-52" url={entry.organizationLogo} noSkeleton />
   );
   const organization = `@${entry.organization}`;
+  const organizationHref = safeExternalHref(entry.organizationLink);
 
   return (
     <div
@@ -26,8 +28,12 @@ export default function ResumeEntryDesktop({ align, entry }: Props) {
     >
       <div className="min-w-200 flex flex-row gap-4">
         {entry.organizationLogo &&
-          (entry.organizationLink ? (
-            <a href={entry.organizationLink} target="_blank">
+          (organizationHref ? (
+            <a
+              href={organizationHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {image}
             </a>
           ) : (
@@ -46,11 +52,12 @@ export default function ResumeEntryDesktop({ align, entry }: Props) {
               {entry.title[resolvedLanguage]}
             </h1>
           )}
-          {entry.organizationLink ? (
+          {organizationHref ? (
             <a
               className="text-3xl font-bold"
-              href={entry.organizationLink}
+              href={organizationHref}
               target="_blank"
+              rel="noopener noreferrer"
             >
               {organization}
             </a>

@@ -3,9 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "generate:api": "openapi-ts",
-    "check:types": "tsc --noEmit -p tsconfig.json",
+    "check:types": "tsc -b",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",

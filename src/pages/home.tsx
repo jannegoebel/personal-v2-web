@@ -7,7 +7,7 @@ import { getLatestSongOfTheDayOptions } from "../lib/api/public/@tanstack/react-
 import Image from "../lib/components/image/image";
 import CenteredPage from "../lib/components/pages/centered-page/centered-page";
 import SpotifyIcon from "../lib/components/icons/spotify";
-import { safeExternalHref } from "../lib/utilization/external-link";
+import { safeExternalHref } from "../lib/functions/external-link";
 
 export default function Home() {
   const { t } = useTranslation();

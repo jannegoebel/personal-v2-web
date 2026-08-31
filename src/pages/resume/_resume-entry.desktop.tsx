@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../lib/hooks/use-language";
 import style from "./_resume-entry.module.css";
-import { safeExternalHref } from "../../lib/utilization/external-link";
+import { safeExternalHref } from "../../lib/functions/external-link";
 
 type Props = {
   align: "top" | "bottom";

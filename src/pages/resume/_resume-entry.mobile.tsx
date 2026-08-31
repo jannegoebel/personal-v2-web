@@ -4,7 +4,7 @@ import Image from "../../lib/components/image/image";
 import { useLanguage } from "../../lib/hooks/use-language";
 import type { ResumeEntryType } from "./resume";
 import style from "./_resume-entry.module.css";
-import { safeExternalHref } from "../../lib/utilization/external-link";
+import { safeExternalHref } from "../../lib/functions/external-link";
 
 type Props = {
   entry: ResumeEntryType;

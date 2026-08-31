@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import type { Project } from "./details";
-import { safeExternalHref } from "../../../lib/utilization/external-link";
+import { safeExternalHref } from "../../../lib/functions/external-link";
 
 type Props = {
   state: Project["state"];

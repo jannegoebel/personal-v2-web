@@ -10,8 +10,8 @@ node_modules
 dist
 out
 
-.env
-.env.*
+**/.env
+**/.env.*
 .npmrc
 
 .DS_Store

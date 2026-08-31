@@ -8,22 +8,25 @@
 FROM node:24-alpine AS build
 WORKDIR /app
 
+COPY package.json package-lock.json ./
+RUN npm ci
+
 # Baked into the public bundle by design: the backend API is public and the
 # key is an identifier, not a credential. Values differ per environment, so
 # this image is environment-specific -- build one per target.
+#
+# Declared below `npm ci` on purpose: an ARG invalidates every layer under it,
+# so hoisting these would reinstall all dependencies on any environment change.
 ARG VITE_BACKEND_URL
 ARG VITE_BACKEND_KEY
 
-# Checked before the source COPY so a missing argument fails in seconds rather
-# than after the whole context is transferred. .env* is dockerignored, so these
-# only ever come from --build-arg; a missing one would inline as the string
-# `undefined` and fail silently in the browser. A trailing slash on the URL is
-# fine -- both consumers normalise it.
+# Checked before the source COPY, so a missing argument fails without waiting
+# on the build. .env* is dockerignored, so these only ever come from
+# --build-arg; a missing one would inline as the string `undefined` and fail
+# silently in the browser. A trailing slash on the URL is fine -- both
+# consumers normalise it.
 RUN : "${VITE_BACKEND_URL:?missing --build-arg VITE_BACKEND_URL}"; \
     : "${VITE_BACKEND_KEY:?missing --build-arg VITE_BACKEND_KEY}"
-
-COPY package.json package-lock.json ./
-RUN npm ci
 
 COPY . .
 RUN npm run build

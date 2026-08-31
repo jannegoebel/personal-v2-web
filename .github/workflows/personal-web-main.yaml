@@ -1,0 +1,26 @@
+name: Deploy web app to production server
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  CONTAINER_NAME: personal-web-production
+
+jobs:
+  build:
+    name: build and deploy
+    runs-on: [self-hosted, main, personal]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: docker build
+        run: docker build -t $CONTAINER_NAME .
+
+      - name: Update container on target system
+        run: docker compose -f /data/docker-compose.yaml up -d
+
+      - name: Clean all container
+        run: docker system prune -f

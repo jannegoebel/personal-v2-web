@@ -168,10 +168,12 @@ export type GetProjectsOverviewResponses = {
             updatedAt: string;
             german: {
                 title: string;
+                metaDescription: string;
                 description: string;
             };
             english: {
                 title: string;
+                metaDescription: string;
                 description: string;
             };
         }>;
@@ -219,10 +221,12 @@ export type GetProjectDetailsResponses = {
             updatedAt: string;
             german: {
                 title: string;
+                metaDescription: string;
                 description: string;
             };
             english: {
                 title: string;
+                metaDescription: string;
                 description: string;
             };
         };

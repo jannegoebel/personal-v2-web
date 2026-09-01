@@ -6,11 +6,12 @@ import "./index.css";
 import { queryClient } from "./lib/api/client";
 import { client as publicClient } from "./lib/api/public/client.gen";
 import "./lib/internationalization/i18n";
+import { backendKey, backendUrl } from "./lib/functions/environments";
 
 publicClient.setConfig({
-  baseUrl: (import.meta.env.VITE_BACKEND_URL ?? "").replace(/\/+$/, ""),
+  baseUrl: backendUrl,
   headers: {
-    "x-api-key": import.meta.env.VITE_BACKEND_KEY,
+    "x-api-key": backendKey,
   },
 });
 

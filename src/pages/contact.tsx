@@ -5,6 +5,11 @@ import MailIcon from "../lib/components/icons/mail";
 import SpotifyIcon from "../lib/components/icons/spotify";
 import Image from "../lib/components/image/image";
 import CenteredPage from "../lib/components/pages/centered-page/centered-page";
+import {
+  gitHubHref,
+  linkedInHref,
+  spotifyHref,
+} from "../lib/functions/search-engine-optimization";
 
 function getRandomProfileImage(profileImages: ProfileImages) {
   const random = Math.floor(Math.random() * profileImages.length);
@@ -36,25 +41,13 @@ export default function Contact({ profileImages }: Props) {
         >
           <MailIcon className="w-14 h-14 md:w-20 md:h-20 fill-black dark:fill-white hover:fill-orange-500 dark:hover:fill-orange-500" />
         </a>
-        <a
-          href="https://www.linkedin.com/in/janne-göbel-004b06238/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={linkedInHref} target="_blank" rel="me">
           <LinkedInIcon className="w-14 h-14 md:w-20 md:h-20 fill-black dark:fill-white hover:fill-orange-500 dark:hover:fill-orange-500" />
         </a>
-        <a
-          href="https://github.com/jannegoebel"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={gitHubHref} target="_blank" rel="me">
           <GithubIcon className="w-14 h-14 md:w-20 md:h-20 fill-black dark:fill-white hover:fill-orange-500 dark:hover:fill-orange-500" />
         </a>
-        <a
-          href="https://open.spotify.com/user/315weusvj4sue4c422js5u3gfi4u?si=84454923c0de4248"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={spotifyHref} target="_blank" rel="me">
           <SpotifyIcon className="w-14 h-14 md:w-20 md:h-20 fill-black dark:fill-white hover:fill-orange-500 dark:hover:fill-orange-500" />
         </a>
       </div>

@@ -17,6 +17,7 @@ RUN npm ci
 #
 # Declared below `npm ci` on purpose: an ARG invalidates every layer under it,
 # so hoisting these would reinstall all dependencies on any environment change.
+ARG VITE_FRONTEND_URL
 ARG VITE_BACKEND_URL
 ARG VITE_BACKEND_KEY
 
@@ -25,19 +26,23 @@ ARG VITE_BACKEND_KEY
 # --build-arg; a missing one would inline as the string `undefined` and fail
 # silently in the browser. A trailing slash on the URL is fine -- both
 # consumers normalise it.
-RUN : "${VITE_BACKEND_URL:?missing --build-arg VITE_BACKEND_URL}"; \
+RUN : "${VITE_FRONTEND_URL:?missing --build-arg VITE_FRONTEND_URL}"; \
+    : "${VITE_BACKEND_URL:?missing --build-arg VITE_BACKEND_URL}"; \
     : "${VITE_BACKEND_KEY:?missing --build-arg VITE_BACKEND_KEY}"
 
 COPY . .
 RUN npm run build
-# scratch has no shell, so a broken build would otherwise ship as an empty
-# artifact and only surface as 404s behind the proxy.
+# nginx serves whatever it is handed, so a broken build would otherwise ship
+# as an empty document root and only surface as 404s behind the proxy.
 RUN test -f dist/index.html || { echo "build produced no dist/index.html" >&2; exit 1; }
 
 # ---- artifact ----
-# No server here on purpose: the infrastructure repo owns proxying and serving.
-# Consume with either:
-#   docker build --target dist --output type=local,dest=./out .
-#   COPY --from=<registry>/personal-web:<tag> /dist /usr/share/nginx/html
-FROM scratch AS dist
-COPY --from=build /app/dist /dist
+FROM nginx:alpine
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost/healthz || exit 1

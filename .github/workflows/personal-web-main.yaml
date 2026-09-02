@@ -14,13 +14,26 @@ jobs:
     name: build and deploy
     runs-on: [self-hosted, main, personal]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
+      # The VITE_* values are inlined into the public bundle, so the image is
+      # environment-specific: it is built here, on the target host, and never
+      # pushed to a registry.
       - name: docker build
-        run: docker build -t $CONTAINER_NAME .
+        run: |
+          docker build \
+            --build-arg VITE_FRONTEND_URL="${{ vars.VITE_FRONTEND_URL }}" \
+            --build-arg VITE_BACKEND_URL="${{ vars.VITE_BACKEND_URL }}" \
+            --build-arg VITE_BACKEND_KEY="${{ secrets.VITE_BACKEND_KEY }}" \
+            -t $CONTAINER_NAME:${{ github.sha }} \
+            -t $CONTAINER_NAME:latest \
+            .
 
+      # Compose recreates the container because the image ID behind :latest
+      # changed, even though the tag did not.
       - name: Update container on target system
-        run: docker compose -f /data/docker-compose.yaml up -d
+        run: docker compose -f /data/docker-compose.yaml up -d $CONTAINER_NAME
 
+      # Keeps the :<sha> tags -- prune only drops images no tag points at.
       - name: Clean all container
         run: docker system prune -f

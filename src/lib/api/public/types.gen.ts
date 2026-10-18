@@ -60,10 +60,10 @@ export type GetUserProfileImagesResponse = GetUserProfileImagesResponses[keyof G
 export type SignUpUserData = {
     body: {
         email: string;
+        username: string;
         firstname: string;
         lastname: string;
-        image?: string;
-        username: string;
+        code: string;
         password: string;
         repeatPassword: string;
     };
@@ -77,6 +77,14 @@ export type SignUpUserErrors = {
      * Default Response
      */
     400: {
+        ok: false;
+        message: string;
+        payload: never;
+    };
+    /**
+     * Default Response
+     */
+    403: {
         ok: false;
         message: string;
         payload: never;
@@ -103,7 +111,6 @@ export type SignUpUserResponses = {
         payload: {
             email: string;
             username?: string | null;
-            image?: string | null;
             name: string;
         };
     };

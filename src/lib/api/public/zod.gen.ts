@@ -22,10 +22,10 @@ export const zGetUserProfileImagesResponse = z.object({
 
 export const zSignUpUserBody = z.object({
     email: z.email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
+    username: z.string().min(1),
     firstname: z.string().min(1),
     lastname: z.string().min(1),
-    image: z.string().optional(),
-    username: z.string(),
+    code: z.string(),
     password: z.string().min(8),
     repeatPassword: z.string().min(8)
 });
@@ -39,7 +39,6 @@ export const zSignUpUserResponse = z.object({
     payload: z.object({
         email: z.email().regex(/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/),
         username: z.string().nullish(),
-        image: z.string().nullish(),
         name: z.string().min(1)
     })
 });

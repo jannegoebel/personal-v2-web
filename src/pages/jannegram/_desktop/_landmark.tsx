@@ -45,8 +45,8 @@ export default function Landmark({ landmark }: Props) {
   }
 
   return (
-    <div className="hidden w-full h-full md:grid grid-rows-[auto_1fr] place-items-center overflow-hidden">
-      <div className="flex flex-col gap-1">
+    <div className="hidden w-full min-h-140 md:grid grid-rows-[auto_1fr] justify-center overflow-hidden">
+      <div className="w-full flex flex-col gap-1 px-8">
         {date && (
           <p className="w-full max-w-100 text-md font-medium">
             {format(new Date(date), t("common:dateFormat"))}
@@ -68,7 +68,7 @@ export default function Landmark({ landmark }: Props) {
           </div>
         )}
       </div>
-      <div className="max-h-full h-full grid grid-cols-[auto_1fr_auto] grid-rows-[1fr_auto] place-items-center gap-x-2 gap-y-1">
+      <div className="max-h-128 h-full grid grid-cols-[auto_1fr_auto] grid-rows-[1fr_auto] place-items-center gap-x-2 gap-y-1">
         <IconButton onClick={handlePreviousImage}>
           <ChevronLeftIcon />
         </IconButton>

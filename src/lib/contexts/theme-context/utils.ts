@@ -7,9 +7,7 @@ export function resolveSystemTheme(): Exclude<Theme, "system"> {
 }
 
 export function isDarkTheme(theme: Theme) {
-  if (theme === "dark") return true;
-  if (theme === "system") {
-    return;
-  }
+  let resolvedTheme = theme === "system" ? resolveSystemTheme() : theme;
+  if (resolvedTheme === "dark") return true;
   return false;
 }

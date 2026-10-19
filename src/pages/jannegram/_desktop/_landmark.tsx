@@ -45,39 +45,41 @@ export default function Landmark({ landmark }: Props) {
   }
 
   return (
-    <div className="hidden w-full h-full md:flex flex-col items-center justify-end-safe">
-      {date && (
-        <p className="w-full max-w-100 text-md font-medium">
-          {format(new Date(date), t("common:dateFormat"))}
-        </p>
-      )}
-      {locationName && (
-        <h1 className="w-full max-w-100 text-xl font-bold text-orange-500">
-          {locationName}
-        </h1>
-      )}
-      {tags && tags.length > 0 && (
-        <div className="w-full max-w-100 flex flex-row flex-wrap">
-          {tags.map((tag) => (
-            <p
-              key={tag}
-              className="text-sm font-light opacity-75"
-            >{`#${tag}`}</p>
-          ))}
-        </div>
-      )}
-      <div className="grid grid-cols-[auto_1fr_auto] grid-rows-[1fr_auto] place-items-center gap-x-2 gap-y-1">
+    <div className="hidden w-full h-full md:grid grid-rows-[auto_1fr] place-items-center overflow-hidden">
+      <div className="flex flex-col gap-1">
+        {date && (
+          <p className="w-full max-w-100 text-md font-medium">
+            {format(new Date(date), t("common:dateFormat"))}
+          </p>
+        )}
+        {locationName && (
+          <h1 className="w-full max-w-100 text-xl font-bold text-orange-500">
+            {locationName}
+          </h1>
+        )}
+        {tags && tags.length > 0 && (
+          <div className="w-full max-w-100 flex flex-row flex-wrap">
+            {tags.map((tag) => (
+              <p
+                key={tag}
+                className="text-sm font-light opacity-75"
+              >{`#${tag}`}</p>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="max-h-full h-full grid grid-cols-[auto_1fr_auto] grid-rows-[1fr_auto] place-items-center gap-x-2 gap-y-1">
         <IconButton onClick={handlePreviousImage}>
           <ChevronLeftIcon />
         </IconButton>
         <button
           key={`displayed-image-${displayImageIndex}`}
-          className={`cursor-pointer w-100 h-120 ${style.fadeIn}`}
+          className={`cursor-pointer max-h-120 h-full w-100 ${style.fadeIn}`}
           onClick={() => setMaximize(true)}
         >
           <Image
             className="h-full w-full"
-            classNameImage="object-center object-cover"
+            classNameImage="object-center object-contain"
             url={images.at(displayImageIndex)}
           />
         </button>

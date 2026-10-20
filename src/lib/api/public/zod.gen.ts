@@ -17,7 +17,7 @@ export const zPublicHealthCheckResponse = z.object({
 export const zGetUserProfileImagesResponse = z.object({
     ok: z.literal(true),
     message: z.string(),
-    payload: z.array(z.string())
+    payload: z.array(z.string().min(1))
 });
 
 export const zSignUpUserBody = z.object({
@@ -25,7 +25,7 @@ export const zSignUpUserBody = z.object({
     username: z.string().min(1),
     firstname: z.string().min(1),
     lastname: z.string().min(1),
-    code: z.string(),
+    code: z.string().min(1),
     password: z.string().min(8),
     repeatPassword: z.string().min(8)
 });
@@ -50,18 +50,18 @@ export const zGetTimelineOverviewResponse = z.object({
     ok: z.literal(true),
     message: z.string(),
     payload: z.array(z.object({
-        id: z.string(),
+        id: z.string().min(1),
         type: z.enum([
             'education',
             'profession',
             'hobby'
         ]),
-        organization: z.string(),
+        organization: z.string().min(1),
         organizationLink: z.url().optional(),
         organizationLogo: z.string().optional(),
         title: z.object({
-            german: z.string(),
-            english: z.string()
+            german: z.string().min(1),
+            english: z.string().min(1)
         }).nullish(),
         tags: z.array(z.string()).nullish(),
         startAt: z.iso.datetime().regex(/^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$/),
@@ -76,7 +76,7 @@ export const zGetProjectsOverviewResponse = z.object({
     ok: z.literal(true),
     message: z.string(),
     payload: z.array(z.object({
-        id: z.string(),
+        id: z.string().min(1),
         state: z.enum([
             'deprecated',
             'planning',
@@ -87,23 +87,23 @@ export const zGetProjectsOverviewResponse = z.object({
         link: z.url().nullish(),
         logo: z.string().optional(),
         titleImage: z.string().optional(),
-        slug: z.string(),
+        slug: z.string().min(1),
         updatedAt: z.iso.datetime().regex(/^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$/),
         german: z.object({
             title: z.string().min(1),
-            metaDescription: z.string(),
+            metaDescription: z.string().min(1),
             description: z.string().min(1)
         }),
         english: z.object({
             title: z.string().min(1),
-            metaDescription: z.string(),
+            metaDescription: z.string().min(1),
             description: z.string().min(1)
         })
     }))
 });
 
 export const zGetProjectDetailsPath = z.object({
-    projectId: z.string()
+    projectId: z.string().min(1)
 });
 
 /**
@@ -113,7 +113,7 @@ export const zGetProjectDetailsResponse = z.object({
     ok: z.literal(true),
     message: z.string(),
     payload: z.object({
-        id: z.string(),
+        id: z.string().min(1),
         state: z.enum([
             'deprecated',
             'planning',
@@ -124,16 +124,16 @@ export const zGetProjectDetailsResponse = z.object({
         link: z.url().nullish(),
         logo: z.string().optional(),
         titleImage: z.string().optional(),
-        slug: z.string(),
+        slug: z.string().min(1),
         updatedAt: z.iso.datetime().regex(/^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$/),
         german: z.object({
             title: z.string().min(1),
-            metaDescription: z.string(),
+            metaDescription: z.string().min(1),
             description: z.string().min(1)
         }),
         english: z.object({
             title: z.string().min(1),
-            metaDescription: z.string(),
+            metaDescription: z.string().min(1),
             description: z.string().min(1)
         })
     })
@@ -146,39 +146,39 @@ export const zGetQuizQuestionsOverviewResponse = z.object({
     ok: z.literal(true),
     message: z.string(),
     payload: z.array(z.object({
-        id: z.string(),
+        id: z.string().min(1),
         type: z.enum(['normal', 'obligatory']),
         question: z.object({
-            german: z.string(),
-            english: z.string()
+            german: z.string().min(1),
+            english: z.string().min(1)
         }),
         answers: z.tuple([
             z.object({
                 correct: z.boolean(),
                 answer: z.object({
-                    german: z.string(),
-                    english: z.string()
+                    german: z.string().min(1),
+                    english: z.string().min(1)
                 })
             }),
             z.object({
                 correct: z.boolean(),
                 answer: z.object({
-                    german: z.string(),
-                    english: z.string()
+                    german: z.string().min(1),
+                    english: z.string().min(1)
                 })
             }),
             z.object({
                 correct: z.boolean(),
                 answer: z.object({
-                    german: z.string(),
-                    english: z.string()
+                    german: z.string().min(1),
+                    english: z.string().min(1)
                 })
             }),
             z.object({
                 correct: z.boolean(),
                 answer: z.object({
-                    german: z.string(),
-                    english: z.string()
+                    german: z.string().min(1),
+                    english: z.string().min(1)
                 })
             })
         ])
@@ -186,7 +186,7 @@ export const zGetQuizQuestionsOverviewResponse = z.object({
 });
 
 export const zGetQuizQuestionDetailsPath = z.object({
-    questionId: z.string()
+    questionId: z.string().min(1)
 });
 
 /**
@@ -196,39 +196,39 @@ export const zGetQuizQuestionDetailsResponse = z.object({
     ok: z.literal(true),
     message: z.string(),
     payload: z.object({
-        id: z.string(),
+        id: z.string().min(1),
         type: z.enum(['normal', 'obligatory']),
         question: z.object({
-            german: z.string(),
-            english: z.string()
+            german: z.string().min(1),
+            english: z.string().min(1)
         }),
         answers: z.tuple([
             z.object({
                 correct: z.boolean(),
                 answer: z.object({
-                    german: z.string(),
-                    english: z.string()
+                    german: z.string().min(1),
+                    english: z.string().min(1)
                 })
             }),
             z.object({
                 correct: z.boolean(),
                 answer: z.object({
-                    german: z.string(),
-                    english: z.string()
+                    german: z.string().min(1),
+                    english: z.string().min(1)
                 })
             }),
             z.object({
                 correct: z.boolean(),
                 answer: z.object({
-                    german: z.string(),
-                    english: z.string()
+                    german: z.string().min(1),
+                    english: z.string().min(1)
                 })
             }),
             z.object({
                 correct: z.boolean(),
                 answer: z.object({
-                    german: z.string(),
-                    english: z.string()
+                    german: z.string().min(1),
+                    english: z.string().min(1)
                 })
             })
         ])
@@ -242,11 +242,11 @@ export const zGetSongOfTheDayOverviewResponse = z.object({
     ok: z.literal(true),
     message: z.string(),
     payload: z.array(z.object({
-        id: z.string(),
-        externalId: z.string(),
+        id: z.string().min(1),
+        externalId: z.string().min(1),
         date: z.iso.datetime(),
-        title: z.string(),
-        artist: z.string(),
+        title: z.string().min(1),
+        artist: z.string().min(1),
         album: z.string().optional(),
         coverImage: z.string().optional(),
         spotifyUrl: z.string().nullable(),
@@ -262,11 +262,11 @@ export const zGetLatestSongOfTheDayResponse = z.object({
     message: z.string(),
     payload: z.union([
         z.object({
-            id: z.string(),
-            externalId: z.string(),
+            id: z.string().min(1),
+            externalId: z.string().min(1),
             date: z.iso.datetime(),
-            title: z.string(),
-            artist: z.string(),
+            title: z.string().min(1),
+            artist: z.string().min(1),
             album: z.string().optional(),
             coverImage: z.string().optional(),
             spotifyUrl: z.string().nullable(),
@@ -283,7 +283,7 @@ export const zGetLandmarksOverviewResponse = z.object({
     ok: z.literal(true),
     message: z.string(),
     payload: z.array(z.object({
-        id: z.string(),
+        id: z.string().min(1),
         date: z.iso.datetime().regex(/^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$/).nullish(),
         location: z.object({
             latitude: z.number(),
@@ -296,7 +296,7 @@ export const zGetLandmarksOverviewResponse = z.object({
 });
 
 export const zGetLandmarkDetailsPath = z.object({
-    landmarkId: z.string()
+    landmarkId: z.string().min(1)
 });
 
 /**
@@ -306,7 +306,7 @@ export const zGetLandmarkDetailsResponse = z.object({
     ok: z.literal(true),
     message: z.string(),
     payload: z.object({
-        id: z.string(),
+        id: z.string().min(1),
         date: z.iso.datetime().regex(/^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$/).nullish(),
         location: z.object({
             latitude: z.number(),

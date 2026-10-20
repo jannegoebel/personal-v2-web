@@ -14,6 +14,7 @@ export default function Home() {
   return (
     <CenteredPage className="grid grid-cols-1 grid-rows-[11rem_1fr_11rem] lg:grid-cols-[12rem_1fr_12rem] lg:grid-rows-1 lg:items-start lg:gap-x-8">
       {matchQuery(songOfTheDayQuery, {
+        loading: () => <span />,
         success: (song) => <SongOfTheDayCard song={song} />,
       })}
       <div className="h-full grid place-items-center">

@@ -22,7 +22,7 @@ export default function ProjectDetails({ project }: Props) {
 
   return (
     <BlankPage className={style.Project}>
-      <div className="max-w-[80ch] w-full flex flex-col gap-4 overflow-y-auto">
+      <div className="max-w-[80ch] w-full flex flex-col gap-4">
         {project.titleImage && (
           <div className="w-full grid place-items-center">
             <img

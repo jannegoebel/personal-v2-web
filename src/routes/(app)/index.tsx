@@ -1,5 +1,5 @@
 import { createFileRoute, HeadContent } from "@tanstack/react-router";
-import Home from "../../pages/home";
+import Home from "../../pages/home/home";
 import { personSchema } from "../../lib/functions/search-engine-optimization";
 import { frontendUrl } from "../../lib/functions/environments";
 import { differenceInYears } from "date-fns";

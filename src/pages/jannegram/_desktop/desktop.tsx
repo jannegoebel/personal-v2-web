@@ -12,8 +12,8 @@ export default function JanneGramDesktop({ landmarks }: Props) {
   const [selectedLandmark, setSelectedLandmark] = useState<LandmarkType>();
 
   return (
-    <BlankPage className="hidden md:grid grid-rows-[1.5fr_1fr] overflow-hidden p-0 md:p-0">
-      <div className="w-full grid items-center overflow-hidden px-2">
+    <BlankPage className="relative hidden md:block overflow-hidden p-0 md:p-0">
+      <div className="absolute inset-x-0 top-0 grid items-center overflow-hidden px-2">
         {selectedLandmark && (
           <Landmark
             key={`landmark-${selectedLandmark.id}`}
@@ -21,7 +21,7 @@ export default function JanneGramDesktop({ landmarks }: Props) {
           />
         )}
       </div>
-      <div className="h-[250%] overflow-hidden">
+      <div className="absolute inset-0">
         <Suspense>
           <Canvas landmarks={landmarks} onSelectMarker={setSelectedLandmark} />
         </Suspense>

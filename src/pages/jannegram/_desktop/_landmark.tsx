@@ -45,7 +45,7 @@ export default function Landmark({ landmark }: Props) {
   }
 
   return (
-    <div className="hidden w-full min-h-140 md:grid grid-rows-[auto_1fr] justify-center overflow-hidden">
+    <div className="hidden relative z-1 w-fit min-h-140 md:grid grid-rows-[auto_1fr] justify-center mx-auto p-2 bg-white dark:bg-black overflow-hidden">
       <div className="w-full flex flex-col gap-1 px-8">
         {date && (
           <p className="w-full max-w-100 text-md font-medium">

@@ -94,8 +94,8 @@ export default function ProjectsOverview({ projects }: Props) {
                 <div className="relative w-160 xl:w-200">
                   {project.titleImage && (
                     <Image
-                      className="absolute inset-0 h-full w-full"
-                      classNameImage="min-h-full min-w-full object-cover grayscale-100"
+                      className="absolute inset-0 h-full w-full grayscale-100 group-hover:grayscale-0"
+                      classNameImage="min-h-full min-w-full object-cover"
                       url={project.titleImage}
                     />
                   )}
@@ -145,8 +145,8 @@ export default function ProjectsOverview({ projects }: Props) {
                 <div className="relative w-160 3xl:w-200">
                   {project.titleImage && (
                     <Image
-                      className="absolute inset-0 h-full w-full"
-                      classNameImage="min-h-full min-w-full object-cover grayscale-100"
+                      className="absolute inset-0 h-full w-full grayscale-100 group-hover:grayscale-0"
+                      classNameImage="min-h-full min-w-full object-cover"
                       url={project.titleImage}
                     />
                   )}

@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
   overflow-y: auto;
 }
 
@@ -16,11 +17,11 @@
 
   a {
     color: var(--clr-white);
-    text-decoration: inherit;
+    text-decoration: underline;
   }
 
   a:hover {
-    color: var(--clr-blue-500);
+    color: var(--color-orange-400);
   }
 
   h1,
@@ -73,7 +74,7 @@
   }
 
   li::marker {
-    color: var(--color-primary);
+    color: var(--color-orange-600);
   }
 
   /* GFM task list */
@@ -108,13 +109,13 @@
   blockquote {
     margin: 0;
     padding: 0.25rem 1rem;
-    border-left: 3px solid var(--color-chart-3);
+    border-left: 3px solid var(--color-orange-500);
     color: var(--text-muted);
   }
 
   hr {
     margin: 0.5rem 0;
-    background: var(--color-primary);
+    background: var(--color-orange-600);
   }
 
   /* Inline code */
@@ -148,7 +149,7 @@
   }
 
   thead tr {
-    border-bottom: 2px solid var(--color-primary);
+    border-bottom: 2px solid var(--color-orange-600);
   }
 
   tbody tr:nth-child(even) {
@@ -159,7 +160,7 @@
     padding: 0.5rem;
     font-size: 1.125rem;
     text-align: start;
-    color: var(--color-primary);
+    color: var(--color-orange-600);
   }
 
   td {

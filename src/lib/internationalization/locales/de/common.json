@@ -2,7 +2,9 @@
   "dark": "Dunkel",
   "dateFormat": "dd.MM.yyyy",
   "english": "Englisch",
+  "error": "Die Seite konnte nicht geladen werden",
   "fromDate": "Von {{date}}",
   "german": "Deutsch",
-  "light": "Hell"
+  "light": "Hell",
+  "loading": "Lädt..."
 }

@@ -2,7 +2,9 @@
   "dark": "Dark",
   "dateFormat": "yyyy/MM/dd",
   "english": "English",
+  "error": "The page could not be loaded",
   "fromDate": "From {{date}}",
   "german": "German",
-  "light": "Light"
+  "light": "Light",
+  "loading": "Loading..."
 }

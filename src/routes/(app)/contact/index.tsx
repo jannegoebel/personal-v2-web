@@ -3,9 +3,10 @@ import Contact from "../../../pages/contact";
 import { useQuery } from "@tanstack/react-query";
 import { getUserProfileImagesOptions } from "../../../lib/api/public/@tanstack/react-query.gen";
 import { matchQuery } from "../../../lib/api/match-query";
-import LoadingPage from "../../../lib/components/pages/loading-page/loading.page";
+import LoadingPage from "../../../lib/components/pages/loading-page/loading-page";
 import { frontendUrl } from "../../../lib/functions/environments";
 import { personSchema } from "../../../lib/functions/search-engine-optimization";
+import ErrorPage from "../../../lib/components/pages/error-page/error-page";
 
 export const Route = createFileRoute("/(app)/contact/")({
   loader: async ({ context }) => {
@@ -79,7 +80,8 @@ function RouteComponent() {
   const landmarksQuery = useQuery(getUserProfileImagesOptions());
 
   return matchQuery(landmarksQuery, {
-    loading: LoadingPage,
+    loading: () => <LoadingPage />,
+    error: () => <ErrorPage />,
     success: (profileImages) => <Contact profileImages={profileImages} />,
   });
 }

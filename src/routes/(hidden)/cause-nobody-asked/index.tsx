@@ -2,8 +2,9 @@ import { createFileRoute, HeadContent } from "@tanstack/react-router";
 import { getQuizQuestionsOverviewOptions } from "../../../lib/api/public/@tanstack/react-query.gen";
 import { useQuery } from "@tanstack/react-query";
 import { matchQuery } from "../../../lib/api/match-query";
-import LoadingPage from "../../../lib/components/pages/loading-page/loading.page";
+import LoadingPage from "../../../lib/components/pages/loading-page/loading-page";
 import Quiz from "../../../pages/quiz/quiz";
+import ErrorPage from "../../../lib/components/pages/error-page/error-page";
 
 export const Route = createFileRoute("/(hidden)/cause-nobody-asked/")({
   loader: async ({ context }) => {
@@ -38,7 +39,8 @@ export const Route = createFileRoute("/(hidden)/cause-nobody-asked/")({
 function RouteComponent() {
   const quizQuery = useQuery(getQuizQuestionsOverviewOptions());
   return matchQuery(quizQuery, {
-    loading: LoadingPage,
+    loading: () => <LoadingPage />,
+    error: () => <ErrorPage />,
     success: (session) => (
       <Quiz session={session} onRestart={() => quizQuery.refetch()} />
     ),

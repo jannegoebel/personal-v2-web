@@ -3,9 +3,10 @@ import JanneGram from "../../../pages/jannegram/jannegram";
 import { getLandmarksOverviewOptions } from "../../../lib/api/public/@tanstack/react-query.gen";
 import { useQuery } from "@tanstack/react-query";
 import { matchQuery } from "../../../lib/api/match-query";
-import LoadingPage from "../../../lib/components/pages/loading-page/loading.page";
+import LoadingPage from "../../../lib/components/pages/loading-page/loading-page";
 import { frontendUrl } from "../../../lib/functions/environments";
 import { personSchema } from "../../../lib/functions/search-engine-optimization";
+import ErrorPage from "../../../lib/components/pages/error-page/error-page";
 
 export const Route = createFileRoute("/(app)/jannegram/")({
   loader: async ({ context }) => {
@@ -79,7 +80,8 @@ function RouteComponent() {
   const landmarksQuery = useQuery(getLandmarksOverviewOptions());
 
   return matchQuery(landmarksQuery, {
-    loading: LoadingPage,
+    loading: () => <LoadingPage />,
+    error: () => <ErrorPage />,
     success: (landmarks) => <JanneGram landmarks={landmarks} />,
   });
 }

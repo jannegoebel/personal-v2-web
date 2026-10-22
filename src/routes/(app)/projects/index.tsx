@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, HeadContent } from "@tanstack/react-router";
 import { matchQuery } from "../../../lib/api/match-query";
 import { getProjectsOverviewOptions } from "../../../lib/api/public/@tanstack/react-query.gen";
-import LoadingPage from "../../../lib/components/pages/loading-page/loading.page";
+import LoadingPage from "../../../lib/components/pages/loading-page/loading-page";
 import ProjectsOverview from "../../../pages/projects/overview";
 import { personSchema } from "../../../lib/functions/search-engine-optimization";
 import { frontendUrl } from "../../../lib/functions/environments";
+import ErrorPage from "../../../lib/components/pages/error-page/error-page";
 
 export const Route = createFileRoute("/(app)/projects/")({
   loader: async ({ context }) => {
@@ -79,7 +80,8 @@ function RouteComponent() {
   const projectsQuery = useQuery(getProjectsOverviewOptions());
 
   return matchQuery(projectsQuery, {
-    loading: LoadingPage,
+    loading: () => <LoadingPage />,
+    error: () => <ErrorPage />,
     success: (projects) => <ProjectsOverview projects={projects} />,
   });
 }

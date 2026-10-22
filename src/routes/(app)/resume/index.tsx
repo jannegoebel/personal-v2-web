@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, HeadContent } from "@tanstack/react-router";
 import { matchQuery } from "../../../lib/api/match-query";
 import { getTimelineOverviewOptions } from "../../../lib/api/public/@tanstack/react-query.gen";
-import LoadingPage from "../../../lib/components/pages/loading-page/loading.page";
+import LoadingPage from "../../../lib/components/pages/loading-page/loading-page";
 import ResumeOverview from "../../../pages/resume/resume";
 import { personSchema } from "../../../lib/functions/search-engine-optimization";
 import { frontendUrl } from "../../../lib/functions/environments";
+import ErrorPage from "../../../lib/components/pages/error-page/error-page";
 
 export const Route = createFileRoute("/(app)/resume/")({
   loader: async ({ context }) => {
@@ -79,7 +80,8 @@ function RouteComponent() {
   const timelineQuery = useQuery(getTimelineOverviewOptions());
 
   return matchQuery(timelineQuery, {
-    loading: LoadingPage,
+    loading: () => <LoadingPage />,
+    error: () => <ErrorPage />,
     success: (resume) => <ResumeOverview resume={resume} />,
   });
 }

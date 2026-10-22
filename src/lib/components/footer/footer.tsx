@@ -42,6 +42,11 @@ export default function Footer() {
       />
       <LinkButton
         classNameLabel="text-sm"
+        label={t("imprint:title")}
+        destination="/imprint"
+      />
+      <LinkButton
+        classNameLabel="text-sm"
         label={t("contact:title")}
         destination="/contact"
       />

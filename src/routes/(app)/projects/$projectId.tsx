@@ -7,9 +7,10 @@ import { getProjectDetailsOptions } from "../../../lib/api/public/@tanstack/reac
 import { useQuery } from "@tanstack/react-query";
 import { matchQuery } from "../../../lib/api/match-query";
 import ProjectDetails from "../../../pages/projects/details/details";
-import LoadingPage from "../../../lib/components/pages/loading-page/loading.page";
+import LoadingPage from "../../../lib/components/pages/loading-page/loading-page";
 import { personSchema } from "../../../lib/functions/search-engine-optimization";
 import { frontendUrl } from "../../../lib/functions/environments";
+import ErrorPage from "../../../lib/components/pages/error-page/error-page";
 
 export const Route = createFileRoute("/(app)/projects/$projectId")({
   loader: async ({ params, context }) => {
@@ -100,7 +101,8 @@ function RouteComponent() {
   );
 
   return matchQuery(projectsQuery, {
-    loading: LoadingPage,
+    loading: () => <LoadingPage />,
+    error: () => <ErrorPage />,
     success: (project) => <ProjectDetails project={project} />,
   });
 }

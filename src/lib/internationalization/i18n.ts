@@ -12,6 +12,8 @@ import contactDe from "./locales/de/contact.json";
 import contactEn from "./locales/en/contact.json";
 import homeDe from "./locales/de/home.json";
 import homeEn from "./locales/en/home.json";
+import imprintDe from "./locales/de/imprint.json";
+import imprintEn from "./locales/en/imprint.json";
 import janneGramDe from "./locales/de/jannegram.json";
 import janneGramEn from "./locales/en/jannegram.json";
 import projectsDe from "./locales/de/projects.json";
@@ -43,6 +45,7 @@ i18n
         common: commonEn,
         contact: contactEn,
         home: homeEn,
+        imprint: imprintEn,
         janneGram: janneGramEn,
         projects: projectsEn,
         quiz: quizEn,
@@ -53,6 +56,7 @@ i18n
         common: commonDe,
         contact: contactDe,
         home: homeDe,
+        imprint: imprintDe,
         janneGram: janneGramDe,
         projects: projectsDe,
         quiz: quizDe,

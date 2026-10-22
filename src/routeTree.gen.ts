@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as appIndexRouteImport } from './routes/(app)/index'
+import { Route as appImprintRouteImport } from './routes/(app)/imprint'
 import { Route as hiddenCauseNobodyAskedIndexRouteImport } from './routes/(hidden)/cause-nobody-asked/index'
 import { Route as appResumeIndexRouteImport } from './routes/(app)/resume/index'
 import { Route as appProjectsIndexRouteImport } from './routes/(app)/projects/index'
@@ -20,6 +21,11 @@ import { Route as appProjectsProjectIdRouteImport } from './routes/(app)/project
 const appIndexRoute = appIndexRouteImport.update({
   id: '/(app)/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const appImprintRoute = appImprintRouteImport.update({
+  id: '/(app)/imprint',
+  path: '/imprint',
   getParentRoute: () => rootRouteImport,
 } as any)
 const hiddenCauseNobodyAskedIndexRoute =
@@ -55,6 +61,7 @@ const appProjectsProjectIdRoute = appProjectsProjectIdRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/imprint': typeof appImprintRoute
   '/': typeof appIndexRoute
   '/projects/$projectId': typeof appProjectsProjectIdRoute
   '/contact/': typeof appContactIndexRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/cause-nobody-asked/': typeof hiddenCauseNobodyAskedIndexRoute
 }
 export interface FileRoutesByTo {
+  '/imprint': typeof appImprintRoute
   '/': typeof appIndexRoute
   '/projects/$projectId': typeof appProjectsProjectIdRoute
   '/contact': typeof appContactIndexRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/(app)/imprint': typeof appImprintRoute
   '/(app)/': typeof appIndexRoute
   '/(app)/projects/$projectId': typeof appProjectsProjectIdRoute
   '/(app)/contact/': typeof appContactIndexRoute
@@ -85,6 +94,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/imprint'
     | '/'
     | '/projects/$projectId'
     | '/contact/'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
     | '/cause-nobody-asked/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/imprint'
     | '/'
     | '/projects/$projectId'
     | '/contact'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
     | '/cause-nobody-asked'
   id:
     | '__root__'
+    | '/(app)/imprint'
     | '/(app)/'
     | '/(app)/projects/$projectId'
     | '/(app)/contact/'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  appImprintRoute: typeof appImprintRoute
   appIndexRoute: typeof appIndexRoute
   appProjectsProjectIdRoute: typeof appProjectsProjectIdRoute
   appContactIndexRoute: typeof appContactIndexRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof appIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(app)/imprint': {
+      id: '/(app)/imprint'
+      path: '/imprint'
+      fullPath: '/imprint'
+      preLoaderRoute: typeof appImprintRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(hidden)/cause-nobody-asked/': {
@@ -177,6 +197,7 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  appImprintRoute: appImprintRoute,
   appIndexRoute: appIndexRoute,
   appProjectsProjectIdRoute: appProjectsProjectIdRoute,
   appContactIndexRoute: appContactIndexRoute,

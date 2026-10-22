@@ -5,6 +5,7 @@
   "error": "Die Seite konnte nicht geladen werden",
   "fromDate": "Von {{date}}",
   "german": "Deutsch",
+  "goHome": "Zurück zur Homepage",
   "light": "Hell",
   "loading": "Lädt..."
 }

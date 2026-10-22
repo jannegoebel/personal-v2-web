@@ -82,6 +82,7 @@ function RouteComponent() {
   return matchQuery(landmarksQuery, {
     loading: () => <LoadingPage />,
     error: () => <ErrorPage />,
+    empty: () => <JanneGram landmarks={[]} />,
     success: (landmarks) => <JanneGram landmarks={landmarks} />,
   });
 }

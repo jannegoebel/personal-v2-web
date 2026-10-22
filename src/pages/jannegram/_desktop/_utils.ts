@@ -35,7 +35,8 @@ export function getCenterCameraPosition(
   distance: number,
   yOffset = 0.4,
 ): THREE.Vector3 {
-  const length = landmarks.length;
+  // An empty list has no centre to average, so fall back to (0, 0).
+  const length = landmarks.length || 1;
 
   const latitude =
     landmarks.reduce((acc, mark) => acc + mark.location.latitude, 0) / length;

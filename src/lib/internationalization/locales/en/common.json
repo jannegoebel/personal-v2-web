@@ -5,6 +5,7 @@
   "error": "The page could not be loaded",
   "fromDate": "From {{date}}",
   "german": "German",
+  "goHome": "Return to home page",
   "light": "Light",
   "loading": "Loading..."
 }

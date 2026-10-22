@@ -6,7 +6,7 @@ export default function LoadingPage() {
 
   return (
     <CenteredPage>
-      <h1>{t("common:loading")}</h1>
+      <h1 className="text-3xl">{t("common:loading")}</h1>
     </CenteredPage>
   );
 }

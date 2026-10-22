@@ -77,11 +77,12 @@ export const Route = createFileRoute("/(app)/contact/")({
 });
 
 function RouteComponent() {
-  const landmarksQuery = useQuery(getUserProfileImagesOptions());
+  const profileImagesQuery = useQuery(getUserProfileImagesOptions());
 
-  return matchQuery(landmarksQuery, {
+  return matchQuery(profileImagesQuery, {
     loading: () => <LoadingPage />,
     error: () => <ErrorPage />,
+    empty: () => <Contact profileImages={[]} />,
     success: (profileImages) => <Contact profileImages={profileImages} />,
   });
 }

@@ -82,6 +82,7 @@ function RouteComponent() {
   return matchQuery(projectsQuery, {
     loading: () => <LoadingPage />,
     error: () => <ErrorPage />,
+    empty: () => <ProjectsOverview projects={[]} />,
     success: (projects) => <ProjectsOverview projects={projects} />,
   });
 }

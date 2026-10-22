@@ -35,7 +35,7 @@ export default function Map({
   }
 
   function handleMapLoad() {
-    if (mapRef.current == null) return;
+    if (mapRef.current == null || landmarks.length === 0) return;
 
     mapRef.current.fitBounds(getBounds(landmarks), {
       padding: 40,

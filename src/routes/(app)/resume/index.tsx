@@ -82,6 +82,7 @@ function RouteComponent() {
   return matchQuery(timelineQuery, {
     loading: () => <LoadingPage />,
     error: () => <ErrorPage />,
+    empty: () => <ResumeOverview resume={[]} />,
     success: (resume) => <ResumeOverview resume={resume} />,
   });
 }

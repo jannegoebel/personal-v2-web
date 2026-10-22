@@ -1,7 +1,8 @@
 import type { Landmarks } from "../jannegram";
 
 export function getInitialPosition(landmarks: Landmarks) {
-  const length = landmarks.length;
+  // An empty list has no centre to average, so fall back to (0, 0).
+  const length = landmarks.length || 1;
 
   const longitude =
     landmarks.reduce((acc, mark) => acc + mark.location.longitude, 0) / length;
